@@ -1,12 +1,12 @@
 ﻿@page "/index"
 @inject NavigationManager Navigation
 
+
+
 <NavMenu />
 
 <div id="page-content" class="bg-1">
     <div id="page-content-scroll" class="" style="right: 0px;">
-
-
 
         <div class="decoration"></div>
 
@@ -79,7 +79,15 @@
     </div>
 </div>
 
-@code{
+@code {
+    //[Inject]
+    //public IJSRuntime JSRuntime { get; set; }
+    
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    if (firstRender)
+    //        await JSRuntime.InvokeVoidAsync("startboot");
+    //}
     private void Go()
     {
         Navigation.NavigateTo("Login");

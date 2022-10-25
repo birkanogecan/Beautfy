@@ -1,0 +1,70 @@
+﻿@page "/myrutinlist"
+
+<NavMenu />
+
+<div id="page-content" class="bg-1">
+    <div id="page-content-scroll" style="right: 0px;">
+        <h3 class="header-mask header-mask-light">Welcome</h3>
+
+        <div class="content-strip">
+            <div class="strip-content">
+                <h4>Reminders Page</h4>
+                <p>Check them off your list!</p>
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="overlay"></div>
+            <img class="preload-image" data-original="images/pictures/1.jpg" alt="img" src="images/pictures/1.jpg" style="display: block;">
+        </div>
+
+        <div class="content">
+            <div class="decoration"></div>
+
+            <div class="one-half-responsive">
+                <h5>Square Reminders</h5>
+                <p>
+                    Simple round reminders that can be selected or unselected by default. Powered by FontAwesome you can change
+                    small notification icon with any icon you wish!
+                </p>
+                <div class="container no-bottom">
+                    <a href="#" class="reminder reminder-check-square">
+                        <strong>Design New Features</strong>
+                        <em><i class="fa fa-clock-o"></i>Tue, 25 August, 2030</em>
+                    </a>
+                    <a href="#" class="reminder reminder-check-square reminder-check-square-selected">
+                        <strong>Create Simple Code</strong>
+                        <em><i class="fa fa-clock-o"></i>Tue, 25 August, 2030</em>
+                    </a>
+                    <a href="#" class="reminder reminder-check-square">
+                        <strong>Implement into Framework</strong>
+                        <em><i class="fa fa-clock-o"></i>Tue, 25 August, 2030</em>
+                    </a>
+                    <a href="#" class="reminder reminder-check-square reminder-check-square-selected">
+                        <strong>Simplify for  Easy Usage</strong>
+                        <em><i class="fa fa-clock-o"></i>Tue, 25 August, 2030</em>
+                    </a>
+                    <a href="#" class="reminder reminder-check-square no-border">
+                        <strong>Create  Docuemntation For Users</strong>
+                        <em><i class="fa fa-clock-o"></i>Tue, 25 August, 2030</em>
+                    </a>
+                </div>
+            </div>
+            <div class="decoration hide-if-responsive"></div>
+
+
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-socials no-bottom">
+
+                <div class="clear"></div>
+            </div>
+            <p class="footer-strip">Copyright <span id="copyright-year">2022</span> Enabled. All Rights Reserved</p>
+        </div>
+        <div class="footer-clear"></div>
+    </div>
+</div>
+
+@code {
+
+}
