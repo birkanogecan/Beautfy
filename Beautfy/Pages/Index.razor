@@ -1,9 +1,83 @@
 ﻿@page "/index"
 @inject NavigationManager Navigation
 
-<h1>Hello, world!</h1>
+<NavMenu />
 
-<button @onclick="Go">Gonder</button>
+<div id="page-content" class="bg-1">
+    <div id="page-content-scroll" class="" style="right: 0px;">
+
+
+
+        <div class="decoration"></div>
+
+        <div class="content">
+            <div class="container heading-style">
+                <h4 class="heading-title">Special Offers</h4>
+                <i class="fa fa-star heading-icon"></i>
+                <div class="line bg-black"></div>
+                <p class="heading-subtitle">
+                    Sizin için önerdiğimiz rutinler!
+                </p>
+            </div>
+
+            <div class="store-items">
+                <div class="store-item">
+                    <a href=""><img src="images/pictures/1.jpg" alt="img"@onclick="@(() => Navigation.NavigateTo("rutindetail"))"></a>
+                    <strong>Pro - Site Template</strong>
+                    <em>$11.00</em>
+                    <em class="discount">$24.00</em>
+                </div>
+
+                <div class="store-item">
+                    <a href="#"><img src="images/pictures/2.jpg" alt="img"></a>
+                    <strong>Wheels - Site Template</strong>
+                    <em>$11.00</em>
+                    <em class="offer"><i class="fa fa-truck"></i>Free Shipping</em>
+                </div>
+                <div class="store-item">
+                    <a href="#"><img src="images/pictures/3.jpg" alt="img"></a>
+                    <strong>Circle - Site Template</strong>
+                    <em>$11.00</em>
+                    <em class="offer">9% Discount</em>
+                </div>
+
+                <div class="store-item">
+                    <a href="#"><img src="images/pictures/4.jpg" alt="img"></a>
+                    <strong>Clean - Site Template</strong>  
+                    <em>$11.00</em>
+                    <em class="offer"><i class="fa fa-gift"></i>1 + 1 Free</em>
+                </div>
+
+                <div class="store-item">
+                    <a href="#"><img src="images/pictures/3.jpg" alt="img"></a>
+                    <strong>Circle - Site Template</strong>
+                    <em>$11.00</em>
+                    <em class="offer">9% Discount</em>
+                </div>
+
+                <div class="store-item">
+                    <a href="#"><img src="images/pictures/4.jpg" alt="img"></a>
+                    <strong>Clean - Site Template</strong>
+                    <em>$11.00</em>
+                    <em class="offer"><i class="fa fa-gift"></i>1 + 1 Free</em>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="decoration"></div>
+
+        </div>
+
+        <div class="content">
+            <div class="decoration"></div>
+        </div>
+
+        <div class="footer">
+            <p class="footer-strip">Copyright <span id="copyright-year">2022</span> Beautyf. All Rights Reserved</p>
+        </div>
+        <div class="footer-clear"></div>
+    </div>
+</div>
 
 @code{
     private void Go()
