@@ -9,3 +9,19 @@
 		</LayoutView>
 	</NotFound>
 </Router>
+
+@*Blazor wasm projesınde App.razor componentine karşılık geliyor. Bu kod blogu blazor wasm için app.razor da yazılıyor. 
+MAUI projesinde main.razor componenti var. Fakat burda kod blogu cagırıldıgında scrıpt render olmuyor.
+<script src="_framework/blazor.webview.js" autostart="false"></script>
+yapılarak her component renderında tekrar ınvoke edılıyor.
+bu projede her render ıcın navmenu.razor componentınde yapıldı.*@
+@*@code{
+    [Inject]
+    public IJSRuntime JSRuntime { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await JSRuntime.InvokeVoidAsync("startboot");
+    }
+}*@
