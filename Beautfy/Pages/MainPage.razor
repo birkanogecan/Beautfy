@@ -1,0 +1,25 @@
+﻿@page "/"
+@using Beautfy.Services
+@inject NavigationManager Navigation
+@inject UserService userService
+
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            bool userDefined = userService.GetAllUser().Result.Any();
+
+            if (userDefined)
+            {
+                Navigation.NavigateTo("index");
+            }
+            else
+            {
+                Navigation.NavigateTo("login");
+            }
+        }
+    }
+
+}

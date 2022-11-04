@@ -1,5 +1,4 @@
-﻿@page "/"
-@page "/login"
+﻿@page "/login"
 @using Beautfy.Models.DataModels
 @using Beautfy.Services
 
@@ -63,16 +62,6 @@
     string gender;
     string skinType;
 
-    protected override async Task OnInitializedAsync()
-    {
-
-        bool userDefined = userService.GetAllUser().Result.Any();
-
-        if (userDefined)
-        {
-            Navigation.NavigateTo("index");
-        }
-    }
     private void Save()
     {
 

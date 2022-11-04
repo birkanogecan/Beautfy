@@ -10,10 +10,14 @@ namespace Beautfy.Services
 {
     public class UserService
     {
+        SQLiteConnection conn;
+        public UserService()
+        {
+            conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "User.db3"));
+            conn.CreateTable<UserEntity>();
+        }
         public int AddUser(UserEntity user)
         {
-            SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "User.db3"));
-            conn.CreateTable<UserEntity>();
             return conn.Insert(user);
         }
 
@@ -27,8 +31,6 @@ namespace Beautfy.Services
         //}
         public async Task<List<UserEntity>> GetAllUser()
         {
-            SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "User.db3"));
-            conn.CreateTable<UserEntity>();
             return conn.Table<UserEntity>().ToList();
         }
 
