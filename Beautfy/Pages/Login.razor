@@ -1,6 +1,9 @@
 ﻿@page "/"
 @page "/login"
+@using Beautfy.Models.DataModels
+@using Beautfy.Services
 
+@inject UserService userService
 @inject NavigationManager Navigation
 
 
@@ -20,17 +23,17 @@
                         Sizden aldığımız bilgiler, yalnızca size daha iyi rutinler sunabilmemiz için kullanılıcaktır.
                     </p>
                 </div>
-                <input type="text" name="contactNameField" placeholder="Kullanıcı Adı" class="contactField requiredField" id="contactNameField">
+                <input type="text" name="contactNameField" placeholder="Kullanıcı Adı" class="contactField requiredField" id="contactNameField" @bind="name">
 
-                <input type="number" name="contactNameField1" placeholder="Yaş" class="contactField" id="age">
+                <input type="number" name="contactNameField1" placeholder="Yaş" class="contactField" id="age" @bind="age">
 
-                <select class="contactField">
+                <select class="contactField" @bind="gender">
                     <option value="0">Cinsiyet</option>
                     <option value="1">Erkek</option>
                     <option value="2">Kadın</option>
                 </select>
 
-                <select class="contactField">
+                <select class="contactField" @bind="skinType">
                     <option value="0">Cilt Tipi</option>
                     <option value="1">Yağlı</option>
                     <option value="2">Kuru</option>
@@ -54,12 +57,36 @@
 <div id="mynano" style="width: 100%; height: 3px; z-index: 9999; top: 60px; float: left; position: fixed;"><div style="background-color: rgb(41, 128, 185); width: 0px; height: 100%; clear: both; transition: height 250ms ease 0s; float: left;"></div></div>
 
 @code {
+
+    string name;
+    int age;
+    string gender;
+    string skinType;
+
     protected override async Task OnInitializedAsync()
     {
-        //Navigation.NavigateTo("index");
+
+        bool userDefined = userService.GetAllUser().Result.Any();
+
+        if (userDefined)
+        {
+            Navigation.NavigateTo("index");
+        }
     }
     private void Save()
     {
+
+        UserEntity user = new UserEntity()
+            {
+                Id = 1,
+                Age = age,
+                Gender = gender,
+                SkinType = skinType,
+                Name = name
+            };
+
+        userService.AddUser(user);
+
         Navigation.NavigateTo("index");
     }
 }

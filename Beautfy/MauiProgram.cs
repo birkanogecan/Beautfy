@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.WebView.Maui;
-using Beautfy.Data;
+using Beautfy.Services;
+
 
 namespace Beautfy;
 
@@ -18,9 +19,8 @@ public static class MauiProgram
 		builder.Services.AddMauiBlazorWebView();
 		#if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
-		#endif
-		
-		builder.Services.AddSingleton<WeatherForecastService>();
+#endif
+        builder.Services.AddSingleton<UserService>();
 
 		return builder.Build();
 	}
