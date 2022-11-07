@@ -692,6 +692,11 @@ ol ol ol{
     border:solid 1px #c0392b;
 }
 
+.red-field {
+    transition: all 250ms ease;
+    border: solid 1px #c0392b;
+}
+
 /*----Checkboxes and Radios----*/
 
 label{

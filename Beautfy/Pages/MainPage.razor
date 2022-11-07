@@ -1,7 +1,12 @@
 ﻿@page "/"
+@using Beautfy.Enums
+@using Beautfy.Models.DataModels
 @using Beautfy.Services
 @inject NavigationManager Navigation
 @inject UserService userService
+@inject TaskService taskService
+@inject RutinService rutinService
+
 
 
 @code {
@@ -9,6 +14,40 @@
     {
         if (firstRender)
         {
+            if (rutinService.GetRutinByID(1) == null)
+            {
+                //first init
+                RutinEntity rutin = new RutinEntity()
+                    {
+                        Id = 1,
+                        Name = "Test Rutin",
+                        IsAssigned = false,
+                        Cycle = (int)Cycle.OnceADay,
+                        Period = (int)Period.Morning
+                    };
+
+                TaskEntity task1 = new TaskEntity()
+                    {
+                        Id = 1,
+                        RutinId = 1,
+                        Description = "Task 1",
+                        IsDone = false
+                    };
+
+                TaskEntity task2 = new TaskEntity()
+                    {
+                        Id = 2,
+                        RutinId = 1,
+                        Description = "Task 2",
+                        IsDone = false
+                    };
+
+                rutinService.AddRutin(rutin);
+
+                taskService.AddTask(task1);
+                taskService.AddTask(task2);
+                //first init
+            }
             bool userDefined = userService.GetAllUser().Result.Any();
 
             if (userDefined)

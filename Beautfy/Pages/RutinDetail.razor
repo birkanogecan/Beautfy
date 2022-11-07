@@ -1,6 +1,10 @@
-﻿@page "/rutindetail"
+﻿@page "/rutindetail/{rutinId:int}"
+@using Beautfy.Models.DataModels
+@using Beautfy.Services
+@inject TaskService taskService
 
 <NavMenu />
+
 <div id="page-content" class="bg-1">
     <div id="page-content-scroll" style="right: 0px;">
         <h3 class="header-mask header-mask-light">Beautfy</h3>
@@ -24,38 +28,14 @@
                         The oldschool design of tasklists with green and grey for completed
                         like most native mobile applications offer
                     </p>
-                    <a href="#" class="tasklist-item tasklist-red tasklist-completed">
-                        <i class="fa fa-check"></i>
-                        <h5>Prepare a Design</h5>
-                    </a>
-                    <a href="#" class="tasklist-item tasklist-green">
-                        <i class="fa fa-check"></i>
-                        <h5>Optimize for Mobiles</h5>
-                    </a>
-                    <a href="#" class="tasklist-item tasklist-blue tasklist-completed">
-                        <i class="fa fa-check"></i>
-                        <h5>Optimize for Tablets</h5>
-                    </a>
-                    <a href="#" class="tasklist-item tasklist-magenta">
-                        <i class="fa fa-check"></i>
-                        <h5>Use latest Trends</h5>
-                    </a>
-                    <a href="#" class="tasklist-item tasklist-orange">
-                        <i class="fa fa-check"></i>
-                        <h5>Design  User Experience</h5>
-                    </a>
-                    <a href="#" class="tasklist-item tasklist-yellow">
-                        <i class="fa fa-check"></i>
-                        <h5>Use Simple Coding</h5>
-                    </a>
-                    <a href="#" class="tasklist-item tasklist-gray">
-                        <i class="fa fa-check"></i>
-                        <h5>Document for Everyone</h5>
-                    </a>
-                    <a href="#" class="tasklist-item tasklist-dark tasklist-completed">
-                        <i class="fa fa-check"></i>
-                        <h5>Upload to ThemeForest</h5>
-                    </a>
+                    @foreach (var item in taskList)
+                    {
+                        <a href="#" class="tasklist-item tasklist-red tasklist-completed">
+                            <i class="fa fa-check"></i>
+                            <h5>@item.Description</h5>
+                        </a>
+                    }
+                   
                     <div class="decoration"></div>
                 </div>
 
@@ -68,12 +48,20 @@
             <div class="footer-socials no-bottom">
                 <div class="clear"></div>
             </div>
-            <p class="footer-strip">Copyright <span id="copyright-year">2022</span> Beautfy. All Rights Reserved</p>
+            <p class="footer-strip">Copyright <span id="copyright-year"></span> Beautfy. All Rights Reserved</p>
         </div>
         <div class="footer-clear"></div>
     </div>
 </div>
 
 @code {
+    [Parameter]
+    public int rutinId { get; set; }
 
+    List<TaskEntity> taskList = new List<TaskEntity>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        taskList = taskService.GetTasksByRutinId(rutinId);
+    }
 }

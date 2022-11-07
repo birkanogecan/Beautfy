@@ -1,6 +1,8 @@
 ﻿@page "/index"
+@using Beautfy.Models.DataModels
+@using Beautfy.Services
 @inject NavigationManager Navigation
-
+@inject RutinService rutinService
 
 
 <NavMenu />
@@ -21,46 +23,16 @@
             </div>
 
             <div class="store-items">
-                <div class="store-item">
-                    <a href=""><img src="images/pictures/1.jpg" alt="img"@onclick="@(() => Navigation.NavigateTo("rutindetail"))"></a>
-                    <strong>Pro - Site Template</strong>
-                    <em>$11.00</em>
-                    <em class="discount">$24.00</em>
-                </div>
-
-                <div class="store-item">
-                    <a href="#"><img src="images/pictures/2.jpg" alt="img"></a>
-                    <strong>Wheels - Site Template</strong>
-                    <em>$11.00</em>
-                    <em class="offer"><i class="fa fa-truck"></i>Free Shipping</em>
-                </div>
-                <div class="store-item">
-                    <a href="#"><img src="images/pictures/3.jpg" alt="img"></a>
-                    <strong>Circle - Site Template</strong>
-                    <em>$11.00</em>
-                    <em class="offer">9% Discount</em>
-                </div>
-
-                <div class="store-item">
-                    <a href="#"><img src="images/pictures/4.jpg" alt="img"></a>
-                    <strong>Clean - Site Template</strong>  
-                    <em>$11.00</em>
-                    <em class="offer"><i class="fa fa-gift"></i>1 + 1 Free</em>
-                </div>
-
-                <div class="store-item">
-                    <a href="#"><img src="images/pictures/3.jpg" alt="img"></a>
-                    <strong>Circle - Site Template</strong>
-                    <em>$11.00</em>
-                    <em class="offer">9% Discount</em>
-                </div>
-
-                <div class="store-item">
-                    <a href="#"><img src="images/pictures/4.jpg" alt="img"></a>
-                    <strong>Clean - Site Template</strong>
-                    <em>$11.00</em>
-                    <em class="offer"><i class="fa fa-gift"></i>1 + 1 Free</em>
-                </div>
+                @foreach (var item in rutinList)
+                {
+                    <div class="store-item">
+                        <a href=""><img src="images/pictures/1.jpg" alt="img" @onclick="@(() => Navigation.NavigateTo("rutindetail/" + item.Id))"></a>
+                        <strong>@item.Name</strong>
+                        <em>@item.Period</em>
+                        <em class="discount">@item.Cycle</em>
+                    </div>
+                }
+              
                 <div class="clear"></div>
             </div>
 
@@ -73,7 +45,7 @@
         </div>
 
         <div class="footer">
-            <p class="footer-strip">Copyright <span id="copyright-year">2022</span> Beautyf. All Rights Reserved</p>
+            <p class="footer-strip">Copyright <span id="copyright-year"></span> Beautyf. All Rights Reserved</p>
         </div>
         <div class="footer-clear"></div>
     </div>
@@ -82,18 +54,16 @@
 @code {
     //[Inject]
     //public IJSRuntime JSRuntime { get; set; }
-    
+
     //protected override async Task OnAfterRenderAsync(bool firstRender)
     //{
     //    if (firstRender)
     //        await JSRuntime.InvokeVoidAsync("startboot");
     //}
+    List<RutinEntity> rutinList = new List<RutinEntity>();
     protected override async Task OnInitializedAsync()
     {
+        rutinList = rutinService.GetAllRutins();
+    }
 
-    }
-    private void Go()
-    {
-        Navigation.NavigateTo("Login");
-    }
 }

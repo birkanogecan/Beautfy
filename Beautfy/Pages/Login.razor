@@ -22,9 +22,9 @@
                         Sizden aldığımız bilgiler, yalnızca size daha iyi rutinler sunabilmemiz için kullanılıcaktır.
                     </p>
                 </div>
-                <input type="text" name="contactNameField" placeholder="Kullanıcı Adı" class="contactField requiredField" id="contactNameField" @bind="name">
+                <input type="text" name="contactNameField" placeholder="Kullanıcı Adı" class="text-field" id="contactNameField" @bind="name">
 
-                <input type="number" name="contactNameField1" placeholder="Yaş" class="contactField" id="age" @bind="age">
+                <input type="number" name="contactNameField1" placeholder="Yaş" class="text-field red-field" id="age" @bind="age">
 
                 <select class="contactField" @bind="gender">
                     <option value="0">Cinsiyet</option>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="footer">
-            <p class="footer-strip">Copyright <span id="copyright-year">2022</span> Beautyf. All Rights Reserved</p>
+            <p class="footer-strip">Copyright <span id="copyright-year"></span> Beautyf. All Rights Reserved</p>
         </div>
         <div class="footer-clear"></div>
     </div>
@@ -64,7 +64,10 @@
 
     private void Save()
     {
-
+        if (age == null || age == 0 || gender == "0" || skinType == "0" || string.IsNullOrEmpty(name))
+        {
+            //todo: validation yapılacak class="text-field red-field" kullanılacak
+        }
         UserEntity user = new UserEntity()
             {
                 Id = 1,
