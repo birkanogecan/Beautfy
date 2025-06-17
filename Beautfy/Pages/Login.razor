@@ -58,7 +58,7 @@
 @code {
 
     string name;
-    int age;
+    int? age;
     string gender;
     string skinType;
 
@@ -71,7 +71,7 @@
         UserEntity user = new UserEntity()
             {
                 Id = 1,
-                Age = age,
+                Age = age ?? 0,
                 Gender = gender,
                 SkinType = skinType,
                 Name = name
